@@ -1,5 +1,5 @@
 import React from 'react';
-import layoutClass from './Layout.css';
+import layoutClass from './Layout.module.css';
 
 const layout = (props) => (
   <>
