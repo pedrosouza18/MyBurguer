@@ -1,6 +1,6 @@
 import React from 'react'
 
-const orderSummary = ({ingredients}) => {
+const orderSummary = ({ ingredients }) => {
   return (
     <>
       <h3>Your Order</h3>
@@ -8,7 +8,7 @@ const orderSummary = ({ingredients}) => {
       <ul>
         {Object.entries(ingredients).map(([key, value], index) => {
           return (
-            <li key={index}>
+            <li key={index} title="ingredients">
               <span style={{textTransform: 'capitalize'}}>{key}</span>: {value}
             </li>
           )
