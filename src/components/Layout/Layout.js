@@ -1,13 +1,11 @@
-import React from 'react';
-import layoutClass from './Layout.module.css';
+import React from 'react'
+import layoutClass from './Layout.module.css'
 
-const layout = (props) => (
+const layout = props => (
   <>
     <div>Toolbar, SideDrawer, Backdrop</div>
-    <main className={layoutClass.Content}>
-      {props.children}
-    </main>
+    <main className={layoutClass.Content}>{props.children}</main>
   </>
-);
+)
 
-export default layout;
+export default layout
