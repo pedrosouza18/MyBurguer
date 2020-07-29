@@ -20,16 +20,22 @@ class BurguerIngredients extends Component {
         )
         break
       case 'meat':
-        ingredient = <div className={ingredientsClass.Meat}></div>
+        ingredient = <div title="meat" className={ingredientsClass.Meat}></div>
         break
       case 'cheese':
-        ingredient = <div className={ingredientsClass.Cheese}></div>
+        ingredient = (
+          <div title="cheese" className={ingredientsClass.Cheese}></div>
+        )
         break
       case 'bacon':
-        ingredient = <div className={ingredientsClass.Bacon}></div>
+        ingredient = (
+          <div title="bacon" className={ingredientsClass.Bacon}></div>
+        )
         break
       case 'salad':
-        ingredient = <div className={ingredientsClass.Salad}></div>
+        ingredient = (
+          <div title="salad" className={ingredientsClass.Salad}></div>
+        )
         break
       default:
         ingredient = null
