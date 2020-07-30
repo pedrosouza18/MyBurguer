@@ -17,6 +17,7 @@ describe('Tests about burger component', () => {
         >
           <div
             class="BreadTop"
+            title="bread top"
           >
             <div
               class="Seeds1"
@@ -32,6 +33,7 @@ describe('Tests about burger component', () => {
           </p>
           <div
             class="BreadBottom"
+            title="bread bottom"
           />
         </div>
       </div>
@@ -56,6 +58,7 @@ describe('Tests about burger component', () => {
         >
           <div
             class="BreadTop"
+            title="bread top"
           >
             <div
               class="Seeds1"
@@ -78,6 +81,7 @@ describe('Tests about burger component', () => {
           />
           <div
             class="BreadBottom"
+            title="bread bottom"
           />
         </div>
       </div>
@@ -124,6 +128,7 @@ describe('Tests about burger component', () => {
         >
           <div
             class="BreadTop"
+            title="bread top"
           >
             <div
               class="Seeds1"
@@ -166,6 +171,7 @@ describe('Tests about burger component', () => {
           />
           <div
             class="BreadBottom"
+            title="bread bottom"
           />
         </div>
       </div>
