@@ -1,6 +1,13 @@
 import React from 'react'
 
-const orderSummary = ({ ingredients }) => {
+import Button from '../../UI/Button/Button'
+
+const orderSummary = ({
+  ingredients,
+  purchaseCanceled,
+  purchaseContinued,
+  price,
+}) => {
   return (
     <>
       <h3>Your Order</h3>
@@ -14,7 +21,16 @@ const orderSummary = ({ ingredients }) => {
           )
         })}
       </ul>
+      <p>
+        <strong>Total Price:</strong> {price.toFixed(2)}
+      </p>
       <p>Continue to checkout?</p>
+      <Button btnType="Danger" clicked={purchaseCanceled}>
+        CANCEL
+      </Button>
+      <Button btnType="Success" clicked={purchaseContinued}>
+        CONTINUE
+      </Button>
     </>
   )
 }

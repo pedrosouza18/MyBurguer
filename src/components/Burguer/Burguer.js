@@ -3,11 +3,11 @@ import React from 'react'
 import classes from './burger.module.css'
 import BurgerIngredients from './BurguerIngredients/BurguerIngredients'
 
-const burger = props => {
-  let transformIngredients = Object.keys(props.ingredients)
-    .map(igKey => {
-      return [...Array(props.ingredients[igKey])].map((_, index) => {
-        return <BurgerIngredients key={igKey + index} type={igKey} />
+const burger = ({ingredients}) => {
+  let transformIngredients = Object.entries(ingredients)
+    .map(([key, value]) => {
+      return [...Array(value)].map((_, index) => {
+        return <BurgerIngredients key={index} type={key} />
       })
     })
     .reduce((prev, item) => {
