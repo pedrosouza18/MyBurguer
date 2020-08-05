@@ -4,6 +4,10 @@ import {render, fireEvent} from '@testing-library/react'
 import BuildControl from './BuildControl'
 
 describe('Tests about build control component', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   test('should click once on less button', () => {
     const mockLessButton = jest.fn()
     const {getByTitle} = render(<BuildControl removed={mockLessButton} />)
