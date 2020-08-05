@@ -16,13 +16,15 @@ const orderSummary = ({
         {Object.entries(ingredients).map(([key, value], index) => {
           return (
             <li key={index} title="ingredients">
-              <span style={{textTransform: 'capitalize'}}>{key}</span>: {value}
+              <span
+                style={{textTransform: 'capitalize'}}
+              >{`${key}: ${value}`}</span>
             </li>
           )
         })}
       </ul>
       <p>
-        <strong>Total Price:</strong> {price.toFixed(2)}
+        <strong>Total Price: {price.toFixed(2)}</strong>
       </p>
       <p>Continue to checkout?</p>
       <Button btnType="Danger" clicked={purchaseCanceled}>
