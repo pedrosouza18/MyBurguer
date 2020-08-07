@@ -1,9 +1,11 @@
 import React from 'react'
 import layoutClass from './Layout.module.css'
 
+import Toolbar from '../Navigation/Toolbar/Toolbar'
+
 const layout = props => (
   <>
-    <div>Toolbar, SideDrawer, Backdrop</div>
+    <Toolbar />
     <main className={layoutClass.Content}>{props.children}</main>
   </>
 )
