@@ -17,16 +17,23 @@ const INGREDIENT_PRICES = {
 
 class BurguerBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
-    },
+    ingredients: null,
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
     loading: false,
+    error: false,
+  }
+
+  componentDidMount() {
+    axios
+      .get('https://react-my-burger-fc47a.firebaseio.com/ingredients.json')
+      .then(response => {
+        this.setState({ingredients: response.data})
+      })
+      .catch(error => {
+        this.setState({error: true})
+      })
   }
 
   updatePurchase = ingredients => {
@@ -104,10 +111,31 @@ class BurguerBuilder extends Component {
     for (let key in disableInfo) {
       disableInfo[key] = disableInfo[key] <= 0
     }
+
+    const ingredientComponent = (
+      <>
+        {this.state.ingredients ? (
+          <>
+            <Burger ingredients={this.state.ingredients} />
+            <BuildControls
+              ingredientAdded={this.addIngredientHandler}
+              ingredientRemoved={this.removeIngredientHandler}
+              disabled={disableInfo}
+              price={this.state.totalPrice}
+              purchasable={this.state.purchasable}
+              ordered={this.purchaseHandler}
+            />
+          </>
+        ) : (
+          <Spinner />
+        )}
+      </>
+    )
+
     return (
       <>
         <Modal show={this.state.purchasing} modalClose={this.modalClose}>
-          {loading ? (
+          {loading || !this.state.ingredients ? (
             <Spinner />
           ) : (
             <OrderSummary
@@ -118,18 +146,10 @@ class BurguerBuilder extends Component {
             />
           )}
         </Modal>
-        <Burger ingredients={this.state.ingredients} />
-        <BuildControls
-          ingredientAdded={this.addIngredientHandler}
-          ingredientRemoved={this.removeIngredientHandler}
-          disabled={disableInfo}
-          price={this.state.totalPrice}
-          purchasable={this.state.purchasable}
-          ordered={this.purchaseHandler}
-        />
+        {!this.state.error ? ingredientComponent : <p>Testeee</p>}
       </>
     )
   }
 }
 
-export default errorHandler(BurguerBuilder)
+export default errorHandler(BurguerBuilder, axios)
