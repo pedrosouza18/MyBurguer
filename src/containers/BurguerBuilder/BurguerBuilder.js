@@ -87,31 +87,40 @@ class BurguerBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
-    const {ingredients, price} = this.state
-    this.setState({loading: true, purchasing: true})
-    axios
-      .post('/orders.json', {
-        ...ingredients,
-        price,
-        customer: {
-          name: 'Pedro',
-          address: {
-            street: 'Praça Amambaí',
-            zipCode: '20730120',
-            country: 'Brazil',
-          },
-          email: 'souzapedro70@gmail.com',
-        },
-        deliveryMethod: 'fastest',
+    // const {ingredients, price} = this.state
+    // this.setState({loading: true, purchasing: true})
+    // axios
+    //   .post('/orders.json', {
+    //     ...ingredients,
+    //     price,
+    //     customer: {
+    //       name: 'Pedro',
+    //       address: {
+    //         street: 'Praça Amambaí',
+    //         zipCode: '20730120',
+    //         country: 'Brazil',
+    //       },
+    //       email: 'souzapedro70@gmail.com',
+    //     },
+    //     deliveryMethod: 'fastest',
+    //   })
+    //   .then(response => {
+    //     this.setState({loading: false, purchasing: false})
+    //     console.log(response)
+    //   })
+    //   .catch(error => {
+    //     this.setState({loading: false, purchasing: false})
+    //     console.error(error)
+    //   })
+    const queryParams = Object.entries(this.state.ingredients)
+      .map(([key, value]) => {
+        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
       })
-      .then(response => {
-        this.setState({loading: false, purchasing: false})
-        console.log(response)
-      })
-      .catch(error => {
-        this.setState({loading: false, purchasing: false})
-        console.error(error)
-      })
+      .join('&')
+    this.props.history.push({
+      pathname: '/checkout',
+      search: `?${queryParams}`,
+    })
   }
 
   render() {

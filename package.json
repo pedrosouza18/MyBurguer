@@ -50,6 +50,8 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
     "sass-loader": "8.0.2",
@@ -64,7 +66,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "BABEL_ENV=development; node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
@@ -74,7 +76,9 @@
     "check-format": "npm run prettier -- --list-different",
     "validate": "npm-run-all --parallel check-format lint build",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -156,6 +160,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.3",
+    "cypress": "^6.2.0",
     "husky": "^4.2.5",
     "jest-emotion": "^10.0.32",
     "lint-staged": "^10.2.11",
