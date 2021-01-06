@@ -8,11 +8,15 @@ function order({order, price}) {
       return Number.isInteger(order[key])
     })
     .map(([key, value]) => `${key} (${value})`)
-    .join(' ')
 
   return (
     <div className={classes.Order}>
-      <p>Ingredients: {ingredients}</p>
+      <p>
+        Ingredients:{' '}
+        {ingredients.map((ing, index) => (
+          <span key={index}>{ing}</span>
+        ))}
+      </p>
       <p>
         Price: <strong>USD {price || 0}</strong>
       </p>

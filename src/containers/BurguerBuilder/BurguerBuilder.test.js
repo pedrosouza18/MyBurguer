@@ -1,11 +1,7 @@
 import React from 'react'
-import {
-  render,
-  fireEvent,
-  screen,
-  wait,
-  waitForElementToBeRemoved,
-} from '@testing-library/react'
+import {render, fireEvent, screen, wait} from '@testing-library/react'
+import {createMemoryHistory} from 'history'
+import {Router} from 'react-router-dom'
 import BurguerBuilder from './BurguerBuilder'
 
 describe('BurguerBuilder', () => {
@@ -57,7 +53,13 @@ describe('BurguerBuilder', () => {
   })
 
   test('it should mount burger with cheese, meat and bacon and send the order', async () => {
-    render(<BurguerBuilder />)
+    const history = createMemoryHistory({initialEntries: ['/', '/checkout']})
+
+    render(
+      <Router history={history}>
+        <BurguerBuilder />
+      </Router>,
+    )
 
     await wait(() => {
       fireEvent.click(screen.getByTestId('more-quantity-Cheese'))
@@ -81,9 +83,5 @@ describe('BurguerBuilder', () => {
     `)
 
     fireEvent.click(screen.getByRole('button', {name: 'CONTINUE'}))
-
-    expect(screen.queryByText('Loading...')).toBeVisible()
-
-    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'))
   })
 })
